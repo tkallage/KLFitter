@@ -97,6 +97,7 @@ set( lib_headers
   include/KLFitter/DetectorAtlas_7TeV.h
   include/KLFitter/DetectorAtlas_8TeV.h
   include/KLFitter/DetectorSnowmass.h
+  include/KLFitter/DetectorAtlasDelphes.h
   include/KLFitter/DetectorBase.h
   include/KLFitter/Fitter.h
   include/KLFitter/LikelihoodBase.h
@@ -106,6 +107,7 @@ set( lib_headers
   include/KLFitter/LikelihoodTopAllHadronic.h
   include/KLFitter/LikelihoodTopDilepton.h
   include/KLFitter/LikelihoodTopLeptonJets.h
+  include/KLFitter/LikelihoodTopLeptonJetsDelphes.h
   include/KLFitter/LikelihoodTopLeptonJetsUDSep.h
   include/KLFitter/LikelihoodTopLeptonJets_Angular.h
   include/KLFitter/LikelihoodTopLeptonJets_JetAngles.h
@@ -119,6 +121,7 @@ set( lib_sources
   src/DetectorAtlas_7TeV.cxx
   src/DetectorAtlas_8TeV.cxx
   src/DetectorSnowmass.cxx
+  src/DetectorAtlasDelphes.cxx
   src/DetectorBase.cxx
   src/Fitter.cxx
   src/LikelihoodBase.cxx
@@ -128,6 +131,7 @@ set( lib_sources
   src/LikelihoodTopAllHadronic.cxx
   src/LikelihoodTopDilepton.cxx
   src/LikelihoodTopLeptonJets.cxx
+  src/LikelihoodTopLeptonJetsDelphes.cxx
   src/LikelihoodTopLeptonJetsUDSep.cxx
   src/LikelihoodTopLeptonJets_Angular.cxx
   src/LikelihoodTopLeptonJets_JetAngles.cxx
@@ -145,6 +149,7 @@ set( lib_sources
   src/ResGaussE.cxx
   src/ResGaussPt.cxx
   src/ResGauss_MET.cxx
+  src/ResGaussDelphes.cxx
   src/ResolutionBase.cxx )
 
 # Build the shared library.

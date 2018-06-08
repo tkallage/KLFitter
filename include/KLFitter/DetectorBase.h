@@ -21,6 +21,7 @@
 #define KLFITTER_DETECTORBASE_H_
 
 #include <string>
+#include "KLFitter/ResolutionBase.h"
 
 // ---------------------------------------------------------
 
@@ -29,7 +30,6 @@
  * \brief The KLFitter namespace
  */
 namespace KLFitter {
-class ResolutionBase;
 
 /**
   * \class KLFitter::DetectorBase

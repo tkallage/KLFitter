@@ -36,3 +36,7 @@ build
 
 # ROOT files (unless added deliberately)
 *.root
+
+# Editor files
+.clang_complete
+
