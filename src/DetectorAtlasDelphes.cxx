@@ -64,6 +64,14 @@ KLFitter::DetectorAtlasDelphes::DetectorAtlasDelphes(std::string folder) : Detec
   // Load missing et resolution
   fResMissingET_eta1 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGauss_MET{Form("%s/par_misset.txt", folder.c_str())});
 
+  // default settings
+  fResEnergyLightJet = fResEnergyJet_eta1.get();
+  fResEnergyBJet = fResEnergyJet_eta1.get();
+  fResEnergyGluonJet = fResEnergyJet_eta1.get();
+  fResEnergyElectron = fResMomentumElectron_eta1.get();
+  fResEnergyPhoton = fResMomentumElectron_eta1.get();
+  fResEnergyMuon = fResMomentumMuon_eta1.get();
+  fResMissingET = fResMissingET_eta1.get();
 }
 
 // ---------------------------------------------------------
