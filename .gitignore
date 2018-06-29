@@ -39,4 +39,4 @@ build
 
 # Editor files
 .clang_complete
-
+.vscode/

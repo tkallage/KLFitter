@@ -23,7 +23,7 @@
 #include <iostream>
 
 #include "KLFitter/ResolutionBase.h"
-#include "KLFitter/ResGaussDelphes.h"
+#include "KLFitter/ResGaussE.h"
 #include "KLFitter/ResGauss_MET.h"
 #include "TString.h"
 // ---------------------------------------------------------
@@ -31,35 +31,35 @@ KLFitter::DetectorAtlasDelphes::DetectorAtlasDelphes(std::string folder) : Detec
   // Load jet resolutions
   // eta < 1.5
   fJetEtaBin_1 = 1.7;
-  fResEnergyJet_eta1 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussDelphes{Form("%s/par_energy_jets_eta1.txt", folder.c_str())});
+  fResEnergyJet_eta1 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussE{Form("%s/par_energy_jets_eta1.txt", folder.c_str())});
   // 1.5 < abs(eta) < 3.2
   fJetEtaBin_2 = 3.2;
-  fResEnergyJet_eta2 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussDelphes{Form("%s/par_energy_jets_eta2.txt", folder.c_str())});
+  fResEnergyJet_eta2 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussE{Form("%s/par_energy_jets_eta2.txt", folder.c_str())});
   // 3.2 < abs(eta) < 4.9
   fJetEtaBin_3 = 4.9;
-  fResEnergyJet_eta3 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussDelphes{Form("%s/par_energy_jets_eta3.txt", folder.c_str())});
+  fResEnergyJet_eta3 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussE{Form("%s/par_energy_jets_eta3.txt", folder.c_str())});
 
   // Load electron resolutions
   // abs(eta) < 0.5
   fElectronEtaBin_1 = 0.5;
-  fResMomentumElectron_eta1 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussDelphes{Form("%s/par_pt_electrons_eta1.txt", folder.c_str())});
+  fResMomentumElectron_eta1 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussE{Form("%s/par_pt_electrons_eta1.txt", folder.c_str())});
   // 0.5 < abs(eta) < 1.5
   fElectronEtaBin_2 = 1.5;
-  fResMomentumElectron_eta2 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussDelphes{Form("%s/par_pt_electrons_eta2.txt", folder.c_str())});
+  fResMomentumElectron_eta2 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussE{Form("%s/par_pt_electrons_eta2.txt", folder.c_str())});
   // 1.5 < abs(eta) < 2.5
   fElectronEtaBin_3 = 2.5;
-  fResMomentumElectron_eta3 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussDelphes{Form("%s/par_pt_electrons_eta3.txt", folder.c_str())});
+  fResMomentumElectron_eta3 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussE{Form("%s/par_pt_electrons_eta3.txt", folder.c_str())});
 
   // Load muon resolutions
   // abs(eta) < 0.5
   fMuonEtaBin_1 = 0.5;
-  fResMomentumMuon_eta1 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussDelphes{Form("%s/par_pt_muons_eta1.txt", folder.c_str())});
+  fResMomentumMuon_eta1 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussE{Form("%s/par_pt_muons_eta1.txt", folder.c_str())});
   // 0.5 < abs(eta) < 1.5
   fMuonEtaBin_2 = 1.5;
-  fResMomentumMuon_eta2 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussDelphes{Form("%s/par_pt_muons_eta2.txt", folder.c_str())});
+  fResMomentumMuon_eta2 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussE{Form("%s/par_pt_muons_eta2.txt", folder.c_str())});
   // 1.5 < abs(eta) < 2.5
   fMuonEtaBin_3 = 2.5;
-  fResMomentumMuon_eta3 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussDelphes{Form("%s/par_pt_muons_eta3.txt", folder.c_str())});
+  fResMomentumMuon_eta3 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussE{Form("%s/par_pt_muons_eta3.txt", folder.c_str())});
 
   // Load missing et resolution
   fResMissingET_eta1 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGauss_MET{Form("%s/par_misset.txt", folder.c_str())});
