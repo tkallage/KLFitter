@@ -17,7 +17,7 @@
  * along with KLFitter. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "KLFitter/DetectorAtlasDelphes.h"
+#include "KLFitter/DetectorCMSDelphes.h"
 
 #include <cmath>
 #include <iostream>
@@ -27,17 +27,14 @@
 #include "KLFitter/ResGauss_MET.h"
 #include "TString.h"
 // ---------------------------------------------------------
-KLFitter::DetectorAtlasDelphes::DetectorAtlasDelphes(std::string folder) : DetectorBase() {
+KLFitter::DetectorCMSDelphes::DetectorCMSDelphes(std::string folder) : DetectorBase() {
   // Load jet resolutions
-  // eta < 1.5
-  fJetEtaBin_1 = 1.7;
+  // eta < 3.0
+  fJetEtaBin_1 = 3.0;
   fResEnergyJet_eta1 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussE{Form("%s/par_energy_jets_eta1.txt", folder.c_str())});
-  // 1.5 < abs(eta) < 3.2
-  fJetEtaBin_2 = 3.2;
+  // 3.0 < abs(eta) < 5.0
+  fJetEtaBin_2 = 5.0;
   fResEnergyJet_eta2 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussE{Form("%s/par_energy_jets_eta2.txt", folder.c_str())});
-  // 3.2 < abs(eta) < 4.9
-  fJetEtaBin_3 = 4.9;
-  fResEnergyJet_eta3 = std::unique_ptr<KLFitter::ResolutionBase>(new KLFitter::ResGaussE{Form("%s/par_energy_jets_eta3.txt", folder.c_str())});
 
   // Load electron resolutions
   // abs(eta) < 0.5
@@ -75,18 +72,16 @@ KLFitter::DetectorAtlasDelphes::DetectorAtlasDelphes(std::string folder) : Detec
 }
 
 // ---------------------------------------------------------
-KLFitter::DetectorAtlasDelphes::~DetectorAtlasDelphes() = default;
+KLFitter::DetectorCMSDelphes::~DetectorCMSDelphes() = default;
 
 // ---------------------------------------------------------
-KLFitter::ResolutionBase * KLFitter::DetectorAtlasDelphes::ResEnergyLightJet(double eta) {
+KLFitter::ResolutionBase * KLFitter::DetectorCMSDelphes::ResEnergyLightJet(double eta) {
   if (fabs(eta) < fJetEtaBin_1) {
     fResEnergyLightJet = fResEnergyJet_eta1.get();
   } else if (fabs(eta) < fJetEtaBin_2) {
     fResEnergyLightJet = fResEnergyJet_eta2.get();
-  } else if (fabs(eta) < fJetEtaBin_3) {
-    fResEnergyLightJet = fResEnergyJet_eta3.get();
   } else {
-    std::cout << "KLFitter::DetectorAtlasDelphes::ResEnergyLightJet(). Eta range exceeded." << std::endl;
+    std::cout << "KLFitter::DetectorCMSDelphes::ResEnergyLightJet(). Eta range exceeded." << std::endl;
     return 0;
   }
 
@@ -94,15 +89,13 @@ KLFitter::ResolutionBase * KLFitter::DetectorAtlasDelphes::ResEnergyLightJet(dou
 }
 
 // ---------------------------------------------------------
-KLFitter::ResolutionBase * KLFitter::DetectorAtlasDelphes::ResEnergyBJet(double eta) {
+KLFitter::ResolutionBase * KLFitter::DetectorCMSDelphes::ResEnergyBJet(double eta) {
   if (fabs(eta) < fJetEtaBin_1) {
     fResEnergyBJet = fResEnergyJet_eta1.get();
   } else if (fabs(eta) < fJetEtaBin_2) {
     fResEnergyBJet = fResEnergyJet_eta2.get();
-  } else if (fabs(eta) < fJetEtaBin_3) {
-    fResEnergyBJet = fResEnergyJet_eta3.get();
   } else {
-    std::cout << "KLFitter::DetectorAtlasDelphes::ResEnergyBJet(). Eta range exceeded." << std::endl;
+    std::cout << "KLFitter::DetectorCMSDelphes::ResEnergyBJet(). Eta range exceeded." << std::endl;
     return 0;
   }
 
@@ -110,7 +103,7 @@ KLFitter::ResolutionBase * KLFitter::DetectorAtlasDelphes::ResEnergyBJet(double 
 }
 
 // ---------------------------------------------------------
-KLFitter::ResolutionBase * KLFitter::DetectorAtlasDelphes::ResEnergyElectron(double eta) {
+KLFitter::ResolutionBase * KLFitter::DetectorCMSDelphes::ResEnergyElectron(double eta) {
   if (fabs(eta) < fElectronEtaBin_1) {
     fResEnergyElectron = fResMomentumElectron_eta1.get();
   } else if (fabs(eta) < fElectronEtaBin_2) {
@@ -118,22 +111,22 @@ KLFitter::ResolutionBase * KLFitter::DetectorAtlasDelphes::ResEnergyElectron(dou
   } else if (fabs(eta) < fElectronEtaBin_3) {
     fResEnergyElectron = fResMomentumElectron_eta3.get();
   } else {
-    std::cout << "KLFitter::DetectorAtlasDelphes::ResEnergyElectron(). Eta range exceeded." << std::endl;
+    std::cout << "KLFitter::DetectorCMSDelphes::ResEnergyElectron(). Eta range exceeded." << std::endl;
     return 0;
   }
   return fResEnergyElectron;
 }
 
 // ---------------------------------------------------------
-KLFitter::ResolutionBase * KLFitter::DetectorAtlasDelphes::ResEnergyMuon(double eta) {
+KLFitter::ResolutionBase * KLFitter::DetectorCMSDelphes::ResEnergyMuon(double eta) {
   if (fabs(eta) < fMuonEtaBin_1) {
     fResEnergyMuon = fResMomentumMuon_eta1.get();
   } else if (fabs(eta) < fMuonEtaBin_2) {
     fResEnergyMuon = fResMomentumMuon_eta2.get();
   } else if (fabs(eta) < fMuonEtaBin_3) {
     fResEnergyMuon = fResMomentumMuon_eta3.get();
-  } else {
-    std::cout << "KLFitter::DetectorAtlasDelphes::ResEnergyMuon(). Eta range exceeded." << std::endl;
+  } else { 
+    std::cout << "KLFitter::DetectorCMSDelphes::ResEnergyMuon(). Eta range exceeded." << std::endl;
     return 0;
   }
 
@@ -141,7 +134,7 @@ KLFitter::ResolutionBase * KLFitter::DetectorAtlasDelphes::ResEnergyMuon(double 
 }
 
 // ---------------------------------------------------------
-KLFitter::ResolutionBase * KLFitter::DetectorAtlasDelphes::ResMissingET() {
+KLFitter::ResolutionBase * KLFitter::DetectorCMSDelphes::ResMissingET() {
   return fResMissingET_eta1.get();
 }
 // ---------------------------------------------------------

@@ -1,0 +1,7 @@
+0.130
+2.70
+0.0
+  # set HCalResolutionFormula {resolution formula as a function of eta and energy}
+  #set ResolutionFormula {                      (abs(eta) <= 3.0) * sqrt(energy^2*0.050^2 + energy*1.50^2) +
+  #                           (abs(eta) > 3.0 && abs(eta) <= 5.0) * sqrt(energy^2*0.130^2 + energy*2.70^2)}
+
